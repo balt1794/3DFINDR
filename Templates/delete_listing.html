@@ -1,0 +1,35 @@
+{% extends "listings/base.html" %}
+
+
+{% block content %}
+<section class="page-section" id="contact">
+<div class="main"> 
+
+    <!-- Create a Form -->
+    
+    <form method="POST"> 
+     <div class="container text-center mt-4">
+        <!-- Security token by Django -->
+        {% csrf_token %} 
+        <h3>Do you want to delete <b>{{listing.title}}</b> listing ? </h3>
+        <p></p>
+        <p><input type="submit" class="btn btn-dark" value="Delete" /> 
+        <a class= "btn btn-danger" href="{% url 'listings:my_listings'%}">Cancel</a></p>
+    </div>
+    </form> 
+</div> 
+</section>
+    
+<section class="page-section" id="contact">
+	
+</section>
+<section class="page-section" id="contact">
+	
+	</section>
+<section class="page-section" id="contact">
+	
+	</section>
+    <section class="page-section" id="contact">
+	
+	</section>
+{% endblock content %}

@@ -1,0 +1,89 @@
+{% extends "listings/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<section class="page-section mt-2" id="contact">
+  <h2 class="font-weight-bold">EDITING</h2><h2><a href="{% url 'listings:detail' listing.id %}">{{ listing.title }}</a></h2>
+     <form action="{% url 'listings:edit_listing' listing.id %}" method='post' enctype="multipart/form-data">
+     {% csrf_token %}
+    {{ form.title|as_crispy_field }}
+    <div class="form-row">
+      <div class="form-group col-md-4 mb-0">
+        {{ form.product_type|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0">
+        {{ form.condition|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0">
+        {{ form.sale_type|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-2 mb-0">
+        {{ form.price|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-5 mb-0">
+        {{ form.city|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-3 mb-0">
+        {{ form.state|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-2 mb-0">
+        {{ form.zipcode|as_crispy_field }}
+      </div>
+    </div>
+    {{ form.contact_email|as_crispy_field }}
+    <div class="form-row">
+    <div class="form-row ml-1">
+      <div class="form-group col-md-6 mb-0">
+        {{ form.main_photo|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ form.photo_1|as_crispy_field }}
+      </div>
+      </div>
+      <div class="form-row ml-1">
+      <div class="form-group col-md-6 mb-0">
+        {{ form.photo_2|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ form.photo_3|as_crispy_field }}
+      </div>
+    </div>
+    </div>
+    <div class = "container text-center">
+    <button type="submit" class="btn btn-primary">Edit Listing</button>
+    </div>
+    </form>
+
+<section class="page-section" id="contact">
+
+	</section>
+	<section class="page-section" id="contact">
+
+	</section>
+	<section class="page-section" id="contact">
+
+	</section>
+  
+</section>
+
+<!--
+<div class="card text-dark bg-transparent" style="max-width: 100rem;">
+  <div class="card-header text-center"><h1 class="font-weight-bold">EDITING</h1><h2><a href="{% url 'listings:detail' listing.id %}">{{ listing.title }}</a></h2></div>
+</div>
+    <p>
+     <form action="{% url 'listings:edit_listing' listing.id %}" method='post' enctype="multipart/form-data">
+    </p>
+    <form>
+    <div class="form-group">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-dark">Edit listing</button>
+    </form>
+</ul>
+-->
+{% endblock content %}

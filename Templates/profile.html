@@ -1,0 +1,21 @@
+{% extends "listings/base.html" %}
+
+{% block page_header %}
+<h4>Create Profile</h4>
+{% endblock page_header %}
+
+{% block content %}
+<ul>
+     <p>
+     <form action="{% url 'listings:profile' %}" method='post' enctype="multipart/form-data>
+     </p>
+     <form>
+     <div class="form-group">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</ul>
+
+{% endblock content %}

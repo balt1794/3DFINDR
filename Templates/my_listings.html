@@ -1,0 +1,50 @@
+{%  extends 'listings/base.html' %}
+
+{% block content %}
+
+<section class="page-section" id="contact">
+<h2 class="font-weight-bold mt-4">MY LISTINGS</h2>
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<table class="table table-sm text-center">
+				<tr>
+					<th>Product</th>
+					<th>Date Listed</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+				{% for my_listing in my_listings %}
+					<tr>
+						<td>{{ my_listing.title }}</td>
+						<td>{{ my_listing.list_date }}</td>
+						<td><a class="btn btn-dark" href="{% url 'listings:detail' my_listing.id %}">View</a></td>
+						<td></td>
+						<td><a class="btn btn-dark" href="{% url 'listings:edit_listing' my_listing.id %}">Edit</a></td>
+						<td><a class="btn btn-dark" href="{% url 'listings:delete_listing' my_listing.id %}">Delete</a></td>
+					</tr>
+				{% endfor %}
+			</table>
+			<div class="container text-center mt-2">
+			<a class="btn btn-primary" href="{% url 'listings:new_listing'%}"> New Listing</a>
+		</div>
+		</div>
+
+	
+</div>
+</div>
+<br>
+<section class="page-section" id="contact">
+
+	</section>
+	<section class="page-section" id="contact">
+
+	</section>
+	<section class="page-section" id="contact">
+
+	</section>
+</section>
+{% endblock %}

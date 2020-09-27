@@ -1,0 +1,162 @@
+{% extends "listings/base.html" %}
+
+{% block page_header %}
+
+{% endblock page_header %}
+
+{% block content %}
+{% load my_app %}
+
+  
+  
+<!--
+ <div class="card">
+            <div class="col">
+        {% for listing in listing_page_obj %}
+        {% if listing.main_photo %}
+          <img class="card-img-right" src="{{ listing.main_photo.url }}" alt="connect" style="max-height:200px">
+        {% endif %}
+        <p>Main Photo</p>
+            </div>
+            <div class="col">
+                <div class="card-block px-2">
+                    <p><b>Title:</b> {{ listing.title }}<br/></p>
+                    <p><b>Condition:</b> {{ listing.condition }}<br/> 
+                     <p><b>Sale Type:</b> {{ listing.sale_type }}<br/> 
+    <p><b>Price: $</b> {{ listing.price }}<br/>
+    <p><b>Location:</b> {{ listing.city }}, {{ listing.state }}<br/> 
+    <p><b>Post Date:</b> {{ listing.list_date }}<br/> 
+    <p></p>
+    <a class="btn btn-dark btn-block" href="{% url 'listings:detail' listing.id %}">View Listing</a></p>
+        <div class="card text-black border-secondary">
+  </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+-->
+ <section class="page-section" id="contact">
+ <h2 class="font-weight-bold text-center mt-4">LISTINGS</h2>
+ <div class="form-group">
+    <div class="card card-body text-center mt-3 mb-3 mr-3 ml-3">
+      <form method="get">
+        <p><b>Condition:</b> {{ my_Filter.form.condition }}</p>
+        <b>State:</b>{{ my_Filter.form.state }}</p>
+        <b>City:</b>{{ my_Filter.form.city }}</p>
+      <button class="btn btn-dark ml-5" type="submit">
+      Search</button>
+      </form>
+    </div>
+  </div>
+<div class="col"> 
+    <div class="card text-center text-black mb-3">
+        <div class="card-header">
+    {% for listing in listing_page_obj %}
+        {% if listing.main_photo %}
+          <img class="card-img-right img-thumbnail" src="{{ listing.main_photo.url }}" width= 250px height=300px alt="connect" style="max-height:200px">
+        {% endif %}
+        {% if listing.photo_1 %}
+          <img class="card-img-right img-thumbnail" src="{{ listing.photo_1.url }}" width= 250px height=300px alt="connect" style="max-height:200px">
+        {% endif %}
+        {% if listing.photo_2 %}
+          <img class="card-img-right img-thumbnail" src="{{ listing.photo_2.url }}" width= 250px height=300px alt="connect" style="max-height:200px">
+        {% endif %}
+         <div class="card text-left text-black mt-2 mb-3 border border-white">
+    <p></p>
+    <p><b>Title:</b> {{ listing.title }}<br/></p>
+    <p><b>Condition:</b> {{ listing.condition }}<br/> 
+    <p><b>Sale Type:</b> {{ listing.sale_type }}<br/> 
+    <p><b>Price:</b> $ {{ listing.price|floatformat:2 }}<br/> 
+    <p><b>Location:</b> {{ listing.city }}, {{ listing.state }}<br/> 
+    <p><b>Post Date:</b> {{ listing.list_date }}<br/> 
+  <ul>
+    <a class="btn btn-dark btn-block" href="{% url 'listings:detail' listing.id %}">View Listing</a>
+  </ul>
+  
+  </div>
+    <hr/> 
+    {% empty %}
+    <h3>No listings found. Try again.</h3>
+    {% endfor %} 
+    </div>
+  </div>
+</div> 
+ </section>
+<section class="contact py-4 text-center text-white">
+<nav aria-label="Page navigation example">
+<ul class="pagination">
+ <div class="pagination ml-3"> 
+        {% if listing_page_obj.has_previous %}
+           <li class="page-item"> <a class= "page-link text-dark" href="{% my_url 1 'page' request.GET.urlencode %}">&laquo; First</a> </li>
+           <li class="page-item"> <a class= "page-link text-dark" href="{% my_url listing_page_obj.previous_page_number 'page' request.GET.urlencode %}">Previous</a></li>
+        {% endif %}
+
+        <span class="current">
+           <li class="page-link text-dark">Page {{listing_page_obj.number}} of {{listing_page_obj.paginator.num_pages}}. </li>
+        </span>
+
+        {% if listing_page_obj.has_next %}
+            <li class="page-item"> <a class= "page-link text-dark" href="{% my_url listing_page_obj.next_page_number 'page' request.GET.urlencode %}">Next</a></li>
+            <li class="page-item"> <a class= "page-link text-dark" href="{% my_url listing_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">Last&raquo;</a></li>
+        {% endif %}
+     </div> 
+  </ul>
+  </nav>
+
+</section>
+{% endblock content %}
+
+<!-- <div class="col"> 
+    <div class="card text-left text-black mb-3">
+        <div class="card-header">
+    {% for listing in all_listings %} 
+    <p><b>Title:</b> {{ listing.title }}<br/></p>
+    <p><b>Condition:</b> {{ listing.condition }}<br/> 
+    <p><b>Sale Type:</b> {{ listing.sale_type }}<br/> 
+    <p><b>Price: $</b> {{ listing.price }}<br/> 
+    <p><b>Location:</b> {{ listing.city }}, {{ listing.state }}<br/> 
+    <p><b>Post Date:</b> {{ listing.list_date }}<br/> 
+  
+   
+    <ul>
+    <a class="btn btn-primary" href="{% url 'listings:detail' listing.id %}">View Listing</a>
+    </ul>
+    <hr/> 
+    {% empty %}
+    <li>No listings</li>
+    {% endfor %} 
+    </div>
+  </div>
+</div> 
+
+
+ <nav aria-label="..."> 
+<ul class="pagination">
+  {% if all_listings.has_previous %}
+  <li class="page-item">
+    <a class="page-link" href="?page=1">First</a>
+    </li>
+  <li class="page-item">
+    <a class="page-link" href="?page={{ all_listings.previous_page_number }}">Previous</a>
+    </li>
+  {% endif %}
+  {% for num in all_listings.paginator.page_range %}
+    {% if all_listings.number == num %}
+    <li class="page-item active">
+    <a class="page-link" href="#">{{ num }}<span class="sr-only">(current)</span></a>
+    </li>
+    {% elif num > all_listings.number|add:'-1' and num < all_listings.number|add:'1' %}
+      {{ num }}
+    {% endif %}
+  {% endfor %}
+  {% if all_listings.has_next %}
+  <li class="page-item">
+    <a class="page-link" href="?page={{ all_listings.next_page_number }}">Next</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="?page={{ all_listings.paginator.num_pages }}">Last</a>
+  </li>
+  {% endif %}
+</ul>
+</nav> */
+-->

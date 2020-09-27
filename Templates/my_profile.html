@@ -1,0 +1,39 @@
+{%  extends 'listings/base.html' %}
+
+
+<br>
+
+{% block page_header %}
+<div class="card text-dark bg-transparent" style="max-width: 100rem;">
+  <div class="card-header text-center"><h1 class="font-weight-bold">MY PROFILE</h1></div>
+</div>
+{% endblock page_header %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Phone</th>
+					<th>Username</th>
+					<th>Email</th>
+				</tr>
+				<tr>
+					<td>{{ my_profile.first_name}} </td>
+					<td>{{ my_profile.last_name}}</td>
+					<td>{{my_profile.phone}}</td>
+					<td>{{usert.username}}</td>
+					<td>{{usert.email}}</td>
+				</tr>
+			</table>
+			<a class="btn btn-dark" href="{% url 'listings:edit_profile' %}">Update Profile</a></td>
+		</div>
+		<div class="card-footer text-left">
+  	</div>
+	</div>
+</div>
+{% endblock %}

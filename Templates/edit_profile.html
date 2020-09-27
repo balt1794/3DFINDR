@@ -1,0 +1,23 @@
+{% extends "listings/base.html" %}
+
+{% block page_header %}
+<div class="card text-dark bg-transparent" style="max-width: 100rem;">
+  <div class="card-header text-center"><h1 class="font-weight-bold">UPDATE PROFILE</h1></div>
+</div>
+{% endblock page_header %}
+
+{% block content %}
+<ul>
+     <p>
+     <form action="{% url 'listings:edit_profile' %}" method='post' enctype="multipart/form-data">
+     </p>
+     <form>
+     <div class="form-group text-center">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn-block btn-dark">Update</button>
+    </form>
+</ul>
+
+{% endblock content %}
