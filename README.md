@@ -7,5 +7,3 @@ This website has been built using Django.
 
 Find out more about the website:
 
-
-https://baltlogs.com/3dfindr/
